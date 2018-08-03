@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-3">
+        <div class="form-group">
+            {{SETTINGS.API_URL}}
+            <select class="form-control" ng-model="selectedCoinName" ng-change="selectedCoinChanged()">
+                <option value="" >Select coin</option>
+                <option ng-repeat="coin in coinsList"
+                        value="{{coin}}" class="reallyItem">
+                    {{coin}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-9">
+        <table class="table table-bordered" ng-if="selectedCoinData !== null && selectedCoinName !== ''">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="(key, value) in selectedCoinData track by key">
+                <td style="font-weight: bold" ng-if="key !== 'id'">{{key}}</td>
+                <td ng-if="key !== 'id'">{{roundNumber(value)}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
